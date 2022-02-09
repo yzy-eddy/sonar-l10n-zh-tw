@@ -1,0 +1,183 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <!-- The Basics -->
+  <parent>
+    <groupId>org.codehaus.sonar-plugins</groupId>
+    <artifactId>parent</artifactId>
+    <version>18</version>
+  </parent>
+  <groupId>org.sonarqube.l10n.zhtw</groupId>
+  <artifactId>sonar-l10n-zh-tw-plugin</artifactId>
+  <version>1.0</version>
+  <packaging>sonar-plugin</packaging>
+
+  <name>Traditional Chinese Language Pack</name>
+  <url>https://github.com/SonarQubeCommunity/sonar-l10n-zhtw</url>
+  <inceptionYear>2022</inceptionYear>
+  <description>SonarQube Traditional Chinese Language Pack (not compatible with the “Chinese Pack” which uses Simplified Chinese)</description>
+
+  <organization>
+    <name>yzy-eddy</name>
+    <url>https://github.com/SonarQubeCommunity/sonar-l10n-zhtw</url>
+  </organization>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <version>${sonar.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-testing-harness</artifactId>
+      <version>${sonar.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-core</artifactId>
+      <version>${sonar.version}</version>
+      <scope>test</scope>
+    </dependency>
+	<!-- https://mvnrepository.com/artifact/org.codehaus.sonar/sonar-plugin-api -->
+	<dependency>
+	    <groupId>org.codehaus.sonar</groupId>
+	    <artifactId>sonar-plugin-api</artifactId>
+	    <version>4.3</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	  <groupId>junit</groupId>     
+	  <artifactId>junit-dep</artifactId>
+	  <version>4.8.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/animal-sniffer-maven-plugin -->
+	<dependency>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>animal-sniffer-maven-plugin</artifactId>
+	    <version>1.18</version>
+	</dependency>
+
+	
+  </dependencies>
+
+  <developers>
+    <developer>
+      <id>yzy</id>
+      <name>yzy-eddy</name>
+      <organization></organization>
+      <organizationUrl></organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <sonar.pluginClass>org.sonar.plugins.l10n.TraditionalChinesePackPlugin</sonar.pluginClass>
+    <sonar.version>9.2.0.49834</sonar.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+ 
+  <!-- Build Settings -->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+          <artifactId>sonar-packaging-maven-plugin</artifactId>
+          <version>1.19</version>
+          <extensions>true</extensions>
+          <configuration>
+            <basePlugin>l10nen</basePlugin>
+            <pluginName>Traditional Chinese Pack</pluginName>
+            <pluginDescription>Language Pack for Traditional Chinese</pluginDescription>
+          </configuration>
+        </plugin>
+        
+        <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>animal-sniffer-maven-plugin</artifactId>
+        <version>1.18</version>
+        <executions>
+        <execution>
+          <phase>test</phase>
+          <goals>
+          <goal>check</goal>
+          </goals>
+        </execution>
+        </executions>
+        <configuration>
+        <signature>
+          <groupId>org.codehaus.mojo.signature</groupId>
+          <artifactId>java18</artifactId>
+          <version>1.0</version>
+        </signature>
+        </configuration>
+      </plugin>
+  
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>native2ascii-maven-plugin</artifactId>
+          <version>1.0-beta-1</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>native2ascii</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.sonar</groupId>
+                    <artifactId>
+                      sonar-packaging-maven-plugin
+                    </artifactId>
+                    <versionRange>[1.5,)</versionRange>
+                    <goals>
+                      <goal>check-dependencies</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+      </pluginManagement>
+    </build>
+ 
+  <!-- More Project Information -->
+  <licenses>
+    <license>
+      <name>GNU LGPL 3</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+ 
+  <!-- Environment Settings -->
+
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/SonarQubeCommunity/sonar-l10n-zhtw/issues</url>
+  </issueManagement>
+  <scm>
+    <connection>scm:git:https://github.com/SonarQubeCommunity/sonar-l10n-zhtw.git</connection>
+    <developerConnection>scm:git:https://github.com/SonarQubeCommunity/sonar-l10n-zhtw.git</developerConnection>
+    <url>https://github.com/SonarQubeCommunity/sonar-l10n-zhtw</url>
+    <tag>HEAD</tag>
+  </scm>
+</project>
